@@ -23,6 +23,9 @@ class LoginPageComponent {
   void btnClick() {
     showDialog = true;
   }
+  void dialogClosed() {
+    showDialog = false;
+  }
   void onClick() {
     _service.setInfo("Jack Wang", "I click the close btn");
     _router.navigate([

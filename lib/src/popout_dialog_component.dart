@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
@@ -20,8 +21,12 @@ import 'package:angular_components/angular_components.dart';
 class PopoutDialogComponent {
   @Input()
   bool showBasicDialog = false;
+  final _dialogClosed = new StreamController<Null>();
+  @Output()
+  Stream<Null> get dialogClosed => _dialogClosed.stream;
   PopoutDialogComponent();
   void onClick() {
-    showBasicDialog = false;
+    //showBasicDialog = false;
+    _dialogClosed.add(Null);
   }
 }
