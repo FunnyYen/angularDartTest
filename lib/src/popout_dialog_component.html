@@ -1,0 +1,25 @@
+<modal [visible]="showBasicDialog">
+  <material-dialog class="basic-dialog">
+
+    <h3 header>Dialog title</h3>
+
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fermentum
+      lacus est, eusagittis ligula fermentum vel. Maecenas facilisis leo dolor,
+      quis rhoncus sem imperdiet vel. Vestibulum vitae tristique orci. Ut
+      lobortis varius convallis. Ut nec egestas diam. Nunc in tincidunt erat.
+      Vivamus porttitor molestie ligula, vitae dictum elit ornare quis. Donec
+      imperdiet venenatis justo ac viverra.
+    </p>
+
+    <div footer>
+      <material-button autoFocus
+                       clear-size
+                       (click)="onClick()"
+                       class="white">
+        Close
+      </material-button>
+    </div>
+
+  </material-dialog>
+</modal>
