@@ -8,6 +8,7 @@ import 'package:angular_router/angular_router.dart';
 import 'src/login_page_component.dart';
 import 'src/grid_component.dart';
 import 'service/service.dart';
+import 'service/dialogService.dart';
 @Component(
   selector: 'my-app',
   template: '<router-outlet></router-outlet>',
@@ -15,17 +16,17 @@ import 'service/service.dart';
   directives:const [ROUTER_DIRECTIVES] ,
   providers: const [
     //popupBindings,
-    Service
+    Service,
+    DialogService
   ]
 )
 
 @RouteConfig(const [
-  const Route(path: 'LoginPage', name: 'LoginPage', component: LoginPageComponent, useAsDefault:true),
+  const Redirect(path: '/', redirectTo: const ['LoginPage']),
+  const Route(path: 'LoginPage', name: 'LoginPage', component: LoginPageComponent),
   const Route(path: 'Grid', name: 'Grid', component: GridComponent)
 ])
 
 class AppComponent {
-  final Service _service;
-  AppComponent(this._service);
   // Nothing here yet. All logic is in TodoListComponent.
 }
