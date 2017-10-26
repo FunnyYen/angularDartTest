@@ -6,7 +6,7 @@ import '../service/service.dart';
 import '../service/dialogService.dart';
 @Component(
   selector: 'grid-page',
-  //styleUrls: const ['popout_dialog_component.css'],
+  styleUrls: const ['grid_component.css'],
   templateUrl: 'grid_component.html',
   directives: const [
     CORE_DIRECTIVES,
@@ -15,44 +15,27 @@ import '../service/dialogService.dart';
   //providers: const [Service]
 )
 
-class GridComponent implements OnActivate,
-                               OnDeactivate,
-                               CanDeactivate,
-                               CanReuse,
-                               OnDestroy,
-                               OnInit {
+class GridComponent implements OnInit {
   final Service _service;
   final DialogService _dialogSvc;
   String name, msg, routerTxt;
   final RouteParams _routeParams;
   GridComponent(this._service, this._dialogSvc, this._routeParams);
+  List<Map> objList = new List<Map>();
 
   Future<Null> ngOnInit() async {
     name = _service.name();
     msg = _service.msg();
     routerTxt = _routeParams.get('text');
     print('OnInit');
+
+    for( int i = 0; i < 20; i++ )
+    {
+      Map map = new Map();
+      map['name'] = "aaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbccccccccccaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbccccccccccaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbccccccccccaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbccccccccccaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbccccccccccaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbccccccccccaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbccccccccccaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbccccccccccaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbccccccccccaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbcccccccccc";
+      objList.add(map);
+    }
+
+    print('2');
   }
-
-  Future<Null> ngOnDestroy() async {
-    print('OnDestroy');
-  }
-
-  @override
-  FutureOr<bool> routerCanReuse(next, prev) => true;
-
-  @override
-  void routerOnActivate(next, prev) {
-    print('Activating prev ${prev.routeName} ${prev.urlPath}');
-    print('Activating next ${next.routeName} ${next.urlPath}');
-  }
-
-  @override
-  void routerOnDeactivate(next, prev) {
-    print('Deactivating prev ${prev.routeName} ${prev.urlPath}');
-    print('Deactivating next ${next.routeName} ${next.urlPath}');
-  }
-
-  @override
-  FutureOr<bool> routerCanDeactivate(next, prev) => _dialogSvc.confirm('Discard changes?');
 }

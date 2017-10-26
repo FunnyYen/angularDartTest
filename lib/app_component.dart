@@ -12,7 +12,7 @@ import 'service/dialogService.dart';
 @Component(
   selector: 'my-app',
   template: '<router-outlet></router-outlet>',
-  styleUrls: const ['app_component.css'],
+  //styleUrls: const ['app_component.css'],
   directives:const [ROUTER_DIRECTIVES] ,
   providers: const [
     //popupBindings,
@@ -22,7 +22,7 @@ import 'service/dialogService.dart';
 )
 
 @RouteConfig(const [
-  const Redirect(path: '/', redirectTo: const ['LoginPage']),
+  const Redirect(path: '/', redirectTo: const ['Grid']),
   const Route(path: 'LoginPage', name: 'LoginPage', component: LoginPageComponent),
   const Route(path: 'Grid', name: 'Grid', component: GridComponent)
 ])
