@@ -37,5 +37,17 @@ class GridComponent implements OnInit {
     }
 
     print('2');
+    _service.addCallBack(callBackListener2);
+  }
+
+  btnClick()
+  {
+    _service.loopCallBack();
+  }
+
+  callBackListener2(String str)
+  {
+    print("gird page receive call back!!!");
+    print(str);
   }
 }

@@ -22,7 +22,7 @@ import 'service/dialogService.dart';
 )
 
 @RouteConfig(const [
-  const Redirect(path: '/', redirectTo: const ['Grid']),
+  const Redirect(path: '/', redirectTo: const ['LoginPage']),
   const Route(path: 'LoginPage', name: 'LoginPage', component: LoginPageComponent),
   const Route(path: 'Grid', name: 'Grid', component: GridComponent)
 ])

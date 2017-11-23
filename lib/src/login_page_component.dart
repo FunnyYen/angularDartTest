@@ -4,6 +4,8 @@ import 'package:angular_router/angular_router.dart';
 import '../service/service.dart';
 import '../service/dialogService.dart';
 import 'popout_dialog_component.dart';
+import 'package:angularDart/src/test_component1.dart';
+import 'package:angularDart/src/test_component2.dart';
 
 @Component(
   selector: 'login-page',
@@ -12,7 +14,9 @@ import 'popout_dialog_component.dart';
   directives: const [
     CORE_DIRECTIVES,
     ROUTER_DIRECTIVES,
-    PopoutDialogComponent
+    PopoutDialogComponent,
+    TestComponent1,
+    TestComponent2
   ],
 )
 
@@ -28,18 +32,25 @@ class LoginPageComponent implements OnActivate,
   LoginPageComponent(this._service, this._dialogSvc,this._router);
   Future<Null> ngOnInit() async {
     //showDialog = true;
+    _service.addCallBack(callBackListener);
   }
 
+  callBackListener(String str)
+  {
+    print("login page receive call back");
+    print(str);
+  }
 
   void dialogClosed() {
     showDialog = false;
   }
 
   void btnClick() {
-    _service.setInfo("Jack Wang", "I click the close btn");
-    _router.navigate([
-        'Grid', {'text':'from router para'}
-      ]);
+    _service.loopCommonTest();
+    // _service.setInfo("Jack Wang", "I click the close btn");
+    // _router.navigate([
+    //     'Grid', {'text':'from router para'}
+    //   ]);
   }
 
   @override
