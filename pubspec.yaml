@@ -12,6 +12,7 @@ dependencies:
   angular_components: ^0.6.0
   angular_forms: ^1.0.0
   angular_router: ^1.0.2
+  dartson: "^0.2.7"
 dev_dependencies:
   angular_test: ^1.0.0
   browser: ^0.10.0
@@ -25,6 +26,7 @@ transformers:
       - test/**_test.dart
 - test/pub_serve:
     $include: test/**_test.dart
+- dartson
 - dart_to_js_script_rewriter
 
 # Uncomment the following in sdk 1.24+ to make pub serve

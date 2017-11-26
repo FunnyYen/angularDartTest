@@ -2,12 +2,13 @@
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
 import 'package:angular/angular.dart';
-import 'package:angular_components/angular_components.dart';
+import 'package:dartson/dartson.dart';
+import 'package:angularDart/data/test_data.dart';
 import 'package:angular_router/angular_router.dart';
 
 import 'src/login_page_component.dart';
 import 'src/grid_component.dart';
-import 'service/service.dart';
+import 'service/data_service.dart';
 import 'service/dialogService.dart';
 @Component(
   selector: 'my-app',
@@ -15,9 +16,8 @@ import 'service/dialogService.dart';
   //styleUrls: const ['app_component.css'],
   directives:const [ROUTER_DIRECTIVES] ,
   providers: const [
-    //popupBindings,
-    Service,
-    DialogService
+    //Service,
+    //DialogService
   ]
 )
 
@@ -28,5 +28,4 @@ import 'service/dialogService.dart';
 ])
 
 class AppComponent {
-  // Nothing here yet. All logic is in TodoListComponent.
 }
