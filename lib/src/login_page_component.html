@@ -1,28 +1,19 @@
 <div class="container">
-  <div class="login">
-    <form>
-      <div class="form-group row">
-        <div class="col-xs-2">
-          <label for="email">Email address:</label>
-          <input type="email" class="form-control" id="email">
+    <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+      <div class="form-group">
+        <label for="name">Name&nbsp;*</label>
+        <input type="text" class="form-control" id="name" required
+               #name="ngForm"
+               ngControl="name">
+        <div [hidden]="name.valid" class="invalid-feedback">
+          Name is required
         </div>
       </div>
-      <div class="form-group">
-        <label for="pwd">Password:</label>
-        <input type="password" class="form-control" id="pwd">
-      </div>
-      <div class="checkbox">
-        <label><input type="checkbox"> Remember me</label>
-      </div>
-      <button type="button" class="btn btn-default" (click)="btnClick()">login</button>
     </form>
-  </div>
+    <form>
+      <material-input #materialInput id="input" label="Required"
+                      (change)="inputChange()"
+                      (inputKeyPress)="inputKeyPress($event)"></material-input>
+      <button type="button" class="btn btn-default" (click)="btnClick()">test</button>
+    </form>
 </div>
-
-<test-component1></test-component1>
-<test-component2></test-component2>
-
-<popout-dialog
-  [showBasicDialog]="showDialog"
-  (dialogClosed)="dialogClosed()">
-</popout-dialog>

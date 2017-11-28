@@ -1,72 +1,51 @@
-import 'dart:async';
 import 'package:angular/angular.dart';
-import 'package:angular_router/angular_router.dart';
-import '../service/service.dart';
-import '../service/dialogService.dart';
-import 'popout_dialog_component.dart';
-import 'package:angularDart/src/test_component1.dart';
-import 'package:angularDart/src/test_component2.dart';
-
+import 'package:angular_forms/angular_forms.dart';
+import 'package:angular_components/angular_components.dart';
+import '../data/hero.dart';
+const List<String> _powers = const [
+  'Really Smart',
+  'Super Flexible',
+  'Super Hot',
+  'Weather Changer'
+];
 @Component(
-  selector: 'login-page',
-  styleUrls: const ['login_page_component.css'],
+  selector: 'login_page',
   templateUrl: 'login_page_component.html',
   directives: const [
     CORE_DIRECTIVES,
-    ROUTER_DIRECTIVES,
-    PopoutDialogComponent,
-    TestComponent1,
-    TestComponent2
-  ],
+    formDirectives,
+    materialInputDirectives],
 )
-
-class LoginPageComponent implements OnActivate,
-                                    OnDeactivate,
-                                    CanDeactivate,
-                                    CanReuse,
-                                    OnInit {
-  final Service _service;
-  final Router _router;
-  bool showDialog = false;
-  final DialogService _dialogSvc;
-  LoginPageComponent(this._service, this._dialogSvc,this._router);
-  Future<Null> ngOnInit() async {
-    //showDialog = true;
-    _service.addCallBack(callBackListener);
+class LoginPageComponent {
+  Hero model = new Hero(18, 'Dr IQ', _powers[0], 'Chuck Overstreet');
+  bool submitted = false;
+  List<String> get powers => _powers;
+  void onSubmit() => submitted = true;
+  /// Returns a map of CSS class names representing the state of [control].
+  Map<String, bool> setCssValidityClass(NgControl control) {
+    final validityClass = control.valid == true ? 'is-valid' : 'is-invalid';
+    return {validityClass: true};
+  }
+  void clear() {
+    model.name = '';
+    model.power = _powers[0];
+    model.alterEgo = '';
   }
 
-  callBackListener(String str)
-  {
-    print("login page receive call back");
-    print(str);
+  @ViewChild('materialInput')
+  MaterialInputComponent materialInput;
+  btnClick() {
+    materialInput.inputText = "erorrrr msggggggg";
+    materialInput.error = "erorrrr msggggggg";
   }
 
-  void dialogClosed() {
-    showDialog = false;
+  inputChange() {
+    print("inputChange");
   }
 
-  void btnClick() {
-    _service.loopCommonTest();
-    // _service.setInfo("Jack Wang", "I click the close btn");
-    // _router.navigate([
-    //     'Grid', {'text':'from router para'}
-    //   ]);
+  inputKeyPress(String event) {
+    print(event);
+    print("inputKeyPress");
   }
 
-  @override
-  FutureOr<bool> routerCanReuse(next, prev) => true;
-
-  @override
-  void routerOnActivate(next, prev) {
-    print('Activating ${next.routeName} ${next.urlPath}');
-  }
-
-  @override
-  void routerOnDeactivate(next, prev) {
-    print('Deactivating ${prev.routeName} ${prev.urlPath}');
-  }
-
-  @override
-  FutureOr<bool> routerCanDeactivate(next, prev) => _dialogSvc.confirm('Discard changes?');
-  //FutureOr<bool> routerCanDeactivate(next, prev) => false?true as FutureOr<bool> : _dialogSvc.confirm('Discard changes?');
 }

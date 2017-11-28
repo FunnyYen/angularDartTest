@@ -8,6 +8,7 @@ import 'package:angular_router/angular_router.dart';
 
 import 'src/login_page_component.dart';
 import 'src/grid_component.dart';
+import 'service/service.dart';
 import 'service/data_service.dart';
 import 'service/dialogService.dart';
 @Component(
